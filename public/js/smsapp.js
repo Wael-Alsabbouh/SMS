@@ -1,10 +1,11 @@
-var app = angular.module('sms_app', ['ngRoute']);
+var app = angular.module('sms_app', ['ngRoute']);//angularUtils.directives.dirPagination FOR LATER
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         //login page
         //.when("/", {templateUrl: "views/login.html", controller: "loginCtrl"})
-    
+        
+        .when("/users/:oneuser", {templateUrl: "views/users.html", controller: "usersCtrl"})
         .when("/users", {templateUrl: "views/users.html", controller: "usersCtrl"})
         .when("/classes", {templateUrl: "views/classes.html", controller: "classesCtrl"})
         .when("/report", {templateUrl: "views/report.html", controller: "reportCtrl"})
@@ -30,7 +31,7 @@ app.controller('ctrl', ['$scope','$filter','$location', '$http','$log', function
 /*var sms_app = angular.module('sms_app', ['ngRoute']);*/
 //app.directive('allUsers',allUsers);
 //app.directive('oneUser',oneUser)
-app.controller('mainController', ['$scope', '$http', function($scope,$http){
+app.controller('mainController', ['$scope', '$http','$routeParams', function($scope,$http,$routeParams){
 
    $http.get('/users').success(function(data){
         
@@ -40,6 +41,7 @@ app.controller('mainController', ['$scope', '$http', function($scope,$http){
       //console.log(data[0].id);
       //$scope.editId=""
       //$scope.editIdLink="/users/edit/"+usersData[0].userId;
+      //$scope.single = $routeParams.oneuser;
    }).error(function(error){
       console.log(error)
    })
