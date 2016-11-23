@@ -1,22 +1,34 @@
-
 /*
  * GET users listing.
  */
 
+// rowDataPacket
 exports.list = function(req, res){
   req.getConnection(function(err,connection){
         var query = connection.query('SELECT * FROM tableusers',function(err,rows)
         {  
             if(err)
                 console.log("Error Selecting : %s ",err );
-            //res.render('users',{page_title:"users - Node.js",data:rows});
-            //console.log('DATA IS:'+rows[1].name);
+           else console.log(rows)
             return res.send(rows);
          });
-         //console.log(query.sql);
-
     });
 };
+
+exports.user = function(req, res){
+    var id = req.params.id;  
+    req.getConnection(function(err,connection){
+        var query = connection.query('SELECT * FROM tableusers WHERE userId=' + parseInt(id),function(err,rows) { 
+            if(err) {
+                console.log(err)}
+           else{ 
+              res.send({data:rows}) // we're good
+
+           }
+         });
+    }); 
+};
+
 
 exports.add = function(req, res){
   res.render('add_users',{page_title:"Add users - Node.js"}); 
@@ -29,9 +41,8 @@ exports.edit = function(req, res){
         { 
             if(err)
                 console.log("Error Selecting : %s ",err );
-            res.render('edit_users',{page_title:"Edit users - Node.js",data:rows});
+           else{res.send({data:rows})}
          });
-         //console.log(query.sql);
     }); 
 };
 
@@ -43,14 +54,14 @@ exports.save = function(req,res){
     req.getConnection(function (err, connection) {
         //var dateAndTime= new Date();
         var data = {
-            userFirstName : input.fname,
-            userLastName  : input.lname,
-            userAddress   : input.address,
-            userEmail     : input.email,
-            userPassword  : input.pass,
-            userMobile    : input.mob,
-            userRole      : input.role,
-            userClass     : input.group_num, 
+            userFirstName : input.userFirstName,
+            userLastName  : input.userLastName,
+            userAddress   : input.userAddress,
+            userEmail     : input.userEmail,
+            userPassword  : input.userPassword,
+            userMobile    : input.userMobile,
+            userRole      : input.userRole,
+            userClass     : input.userClass, 
             //userRegisterDate: dateAndTime
         };
         //console.log(data.userRegisterDate);
@@ -67,23 +78,27 @@ exports.save = function(req,res){
 exports.save_edit = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));
     var id = req.params.id;
+   
     req.getConnection(function (err, connection) {
+
         var data = {
-            userFirstName : input.fname,
-            userLastName  : input.lname,
-            userAddress   : input.address,
-            userEmail     : input.email,
+            userFirstName : input.userFirstName,
+            userLastName  : input.userLastName,
+            userAddress   : input.userAddress,
+            userEmail     : input.userEmail,
             //userPassword  : input.pass,
-            userMobile    : input.mob,
-            userRole      : input.role,
-            userClass     : input.group_num 
+            userMobile    : input.userMobile,
+            userRole      : input.userRole,
+            userClass     : input.userClass 
         };
-        
+
         connection.query("UPDATE tableusers set ? WHERE userId = ? ",[data,id], function(err, rows)
         {
           if (err)
               console.log("Error Updating : %s ",err );
-          res.redirect('/');
+           
+           else{res.send({data:rows})}
+           
         });
     });
 };

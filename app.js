@@ -39,16 +39,16 @@ app.use(
         
         host: 'localhost',
         user: 'root',
-        password : 'admin',
-        //port : 3306, //port mysql
+        password : 'root',
         database:'sms'
 
-    },'pool') //or single
+    },'pool') 
 
 );
 
 app.get('/', routes.index);
-app.get('/users', users.list);  
+app.get('/users', users.list);
+app.get('/users/:id', users.user)
 app.get('/users/add', users.add); 
 app.post('/users/add', users.save); 
 app.get('/users/delete/:id', users.delete_user); 
