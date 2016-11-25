@@ -1,4 +1,4 @@
-var app = angular.module('sms_app', ['ngRoute']);//angularUtils.directives.dirPagination FOR LATER
+var app = angular.module('sms_app', ['ngRoute','angularUtils.directives.dirPagination']);//angularUtils.directives.dirPagination FOR LATER
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -32,19 +32,33 @@ app.controller('ctrl', ['$scope','$filter','$location', '$http','$log', function
 //app.directive('allUsers',allUsers);
 //app.directive('oneUser',oneUser)
 app.controller('mainController', ['$scope', '$http','$routeParams', function($scope,$http,$routeParams){
-
+  /*function _arrayBufferToBase64( buffer ) {
+  var binary = '';
+  var bytes = new Uint8Array( buffer );
+  var len = bytes.byteLength;
+  for (var i = 0; i < len; i++) {
+    binary += String.fromCharCode( bytes[ i ] );
+  }
+  return window.btoa( binary );
+}*/
+   //$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//);   
    $http.get('/users').success(function(data){
-        
       //console.log(data);
       //$scope.test=data[0].name;
       $scope.usersData = data;
+      //$scope.userPhoto = _arrayBufferToBase64(data);
+      //console.log($scope.userPhoto[3].userId);
       //console.log(data[0].id);
       //$scope.editId=""
       //$scope.editIdLink="/users/edit/"+usersData[0].userId;
       //$scope.single = $routeParams.oneuser;
    }).error(function(error){
       console.log(error)
-   })
+   });
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;
+        $scope.reverse = !$scope.reverse;
+    }
 
 }]);
 

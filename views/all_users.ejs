@@ -1,18 +1,19 @@
 <div >
 	    <div class="row">
 		<!-- sort by box -->
-	    <div class="col-md-4 pull-right">
-	    <label class="col-md-4 control-label" for="selectbasic">Sort by</label>
-		    <select id="selectbasic" name="selectbasic" class="form-control">
-		      <option value="1">Students</option>
-		      <option value="2">Mentors</option>
-		      <option value="3">Groups</option>
+	    <div class="col-md-2 pull-right">
+	    <label class="col-md-12 control-label pull-left" for="selectbasic">Show only</label>
+		    <select id="selectbasic" name="selectbasic" class="form-control col-md-4" ng-model="filterByRole">
+		      <option value="">ِAll</option>    
+              <option value="student">Students</option>
+		      <option value="mentor">Mentors</option>
+		      <option value="admin">Admins</option>
 		    </select>
 	  	</div>
 		<!-- END sort by box -->
 
 		<!-- Search box -->
-	<form class="navbar-form" role="search">
+	<form class="navbar-form col-md-4" role="search">
 	    <div class="input-group add-on">
 	      <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" ng-model="search">
 	      <div class="input-group-btn">
@@ -23,25 +24,52 @@
   		<!-- END Search box -->
         <div class="col-md-12">
         <div class="table-responsive">
-              <table id="mytable" class="table table-bordred table-striped">
+              <table id="mytable" class="table table-bordred table-striped table-hover" ng-controller="mainController">
                    <thead>
-                  	   <th>ID</th>
+                  	   <th class="clickable-th" ng-click="sort('userId')">ID
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
 	                   <th>Image</th>
-	                   <th>First Name</th>
-	                   <th>Last Name</th>
-	                   <th>Address</th>
-	                   <th>Register Date</th>
-	                   <th>Email</th>
-	                   <th>Mobile Number</th>
-	                   <th>Role</th>
-	                   <th>Group Number</th>
+                       <th class="clickable-th" ng-click="sort('userFirstName')">Name
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userFirstName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userLastName')">Last Name
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userLastName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userAddress')">Address
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userAddress'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userRegisterDate')">Reg Date
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userRegisterDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userEmail')">Email
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userEmail'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userMobile')">Mobile Number
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userMobile'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userRole')">Role
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userRole'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                       <th class="clickable-th" ng-click="sort('userClass')">Class
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='userClass'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
 	                   <th>Edit</th>
 	                   <th>Delete</th>
                    </thead>
-    <tbody ng-controller="mainController">
-	    <tr ng-repeat="user in usersData|filter:search | orderBy: 'userFirstName'">
+    <tbody>
+	    <tr dir-paginate="user in usersData|filter:filterByRole|itemsPerPage:5|filter:search | orderBy: sortKey:reverse">
 		    <td>{{user.userId}}</td>
-		    <td><img class='profile-img' src="https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif"></td>
+		    <td><img class='profile-img' ng-src="data:image/PNG;base64,{{user.userPhoto}}"></td>
 		    <td>{{user.userFirstName}}</td>
 		    <td>{{user.userLastName}}</td>
 		    <td>{{user.userAddress}}</td>
@@ -59,24 +87,21 @@
 		    </p></td>
 	    </tr>
 	    
-    </tbody> 
+    </tbody>          
 </table>
+		<div class='whatever'>
+            <div class="insert_btn_container">
+                <td><p data-placement="top" data-toggle="tooltip" title="Add">
+                <button class="btn btn-primary btn-success" data-title="Add" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span> Invite User</button></p>
+                </td>
+            </div>
 
-		<div class="clearfix"></div>
-		<ul class="pagination pull-right">
-		  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		  <li class="active"><a href="#">1</a></li>
-		  <li><a href="#">2</a></li>
-		  <li><a href="#">3</a></li>
-		  <li><a href="#">4</a></li>
-		  <li><a href="#">5</a></li>
-		  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-		</ul>
-		<!-- <a href="#" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span> Add User</a> -->
-		<td><p data-placement="top" data-toggle="tooltip" title="Add">
-		<button class="btn btn-primary btn-success" data-title="Add" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span>Add User</button></p>
-		</td> 
-
+            <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true">
+            </dir-pagination-controls>
+        </div>  
         </div>
             
        </div>

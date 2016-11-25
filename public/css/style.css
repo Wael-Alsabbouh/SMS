@@ -26,6 +26,16 @@ nav.navbar {
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 	text-align: center;
 }
+.clickable-th{
+        cursor: pointer;
+}
+.insert_btn_container{
+    display: inline-block;
+}
+dir-pagination-controls.ng-isolate-scope {
+    float: right;
+}
+
 /*||||||||||CHECKBOX-IMG STYLE||||||||||*/
 .item {
   width: 100px;
