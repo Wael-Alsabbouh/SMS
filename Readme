@@ -1,6 +1,6 @@
 /*----------------------------
-         LAST UPDATES 
+   LAST UPDATES 25/Nov/2016
 -----------------------------*/
-- new interface
-- separate the views
-- student attendance design
+- Add Sort by column feature
+- Add Filter by Role Value
+- Add Table Pagenation
