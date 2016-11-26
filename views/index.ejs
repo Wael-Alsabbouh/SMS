@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  ng-app="sms_app">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Students Managment System</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -15,6 +15,12 @@
 </head>
 <body>
     <div id="wrapper">
+        <div class="att_cont" style="padding:5px;color:#fff;text-align: center;">
+            <button type="button" class="close close_box" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+
+                        <h1 style="text-shadow: 2px 3px 3px #000;letter-spacing: 6px;">Announcement!</h1>
+                        <span style="padding:20px;font-size:18px;">This Sunday, we will teach at a different location.  We will teach at the company Optimizely at Nes 76. It's about a 12 minute walk from Central Station. Please be on time as always, preferably 10 minutes earlier, as everything goes a bit slower in a new building. </span>
+                    </div>
            <!-- NAV TOP  -->
                 <%- include layouts/header.ejs %>
                  <%- include layouts/sidebar.ejs %> 
@@ -22,6 +28,7 @@
         <div id="page-wrapper" >
             <div id="page-inner">
                 <div class="row">
+                    
                     <div class="col-md-12">
                      <h2>Dashboard</h2>   
                         <h5>Welcome Wael , it's nice to see you again. </h5>
@@ -29,7 +36,8 @@
                        <%- include /edit_user.ejs %>
                        <%- include /add_user.ejs %>
                        <%- include /del_user.ejs %>
-                       <%- include layouts/userCheckBox.ejs %> 
+                       <%- include layouts/userCheckBox.ejs %>
+                       <%- include invite.ejs %> 
                     </div>
                 </div><!--ROW-->
                  <hr />

@@ -46,3 +46,8 @@ $(document).ready(function(e){
             $(this).toggleClass("check");
             });
     });
+
+/*Abbouncement box*/
+$(document).on('click','.close_box',function(){
+    $(".att_cont").animate({ height: '0px'}, "200").fadeOut(300);
+});
