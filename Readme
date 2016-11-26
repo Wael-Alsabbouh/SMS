@@ -1,6 +1,8 @@
 /*----------------------------
-   LAST UPDATES 25/Nov/2016
+   LAST UPDATES 26/Nov/2016
 -----------------------------*/
 - Add Sort by column feature
 - Add Filter by Role Value
 - Add Table Pagenation
+- Announcment view
+- Invite by email (not finished yet)
