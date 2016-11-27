@@ -50,7 +50,8 @@ exports.save = function(req,res){
             userPassword  : input.pass,
             userMobile    : input.mob,
             userRole      : input.role,
-            userClass     : input.group_num, 
+            userClass     : input.group_num,
+            userPhoto     : input.img_upload
             //userRegisterDate: dateAndTime
         };
         //console.log(data.userRegisterDate);

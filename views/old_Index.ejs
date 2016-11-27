@@ -1,0 +1,47 @@
+<html ng-app="sms_app">
+    <head>
+        <title><%=(locals.title) ? title :''%></title>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+ 		<script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script> 
+ 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+ 		<script src="js/smsapp.js"></script>
+ 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="./js/js.js"></script> 
+    </head>
+    <body>
+       
+
+
+<%- include layouts/header.ejs %>
+
+
+<%- include layouts/sidebar.ejs %>
+
+    
+<%- include /del_user.ejs %>
+
+<%- include /add_user.ejs %>
+
+
+
+
+
+<%- include layouts/userCheckBox.ejs %>
+		
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+ 

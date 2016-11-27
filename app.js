@@ -3,6 +3,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+//var pagination = require('angular-utils-pagination');
 
 //load users route
 var users = require('./routes/users');   //API 
@@ -41,7 +42,7 @@ app.use(
         user: 'root',
         password : 'admin',
         //port : 3306, //port mysql
-        database:'sms'
+        database:'sms_db'
 
     },'pool') //or single
 
@@ -63,4 +64,29 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 
+
+/*|||||||||||||||| Invite by email |||||||||||||||*/
+
+app.get("/invite",function(req,res){res.render("invite");});
+
+app.post("/invite",function(req,res){
+    var api_key = 'key-055bb9cb0a075b11fe777e200596e62a';
+    var domain = 'sandboxdc00bc963eec4cccae80c4bae64b4a73.mailgun.org';
+    var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+ 
+    var data = {
+      from: 'HYF Student System <postmaster@sandboxdc00bc963eec4cccae80c4bae64b4a73.mailgun.org>',
+      to: req.body.useremail,
+      subject: "HYF Student System",
+      text: req.body.userbody
+    };
+ 
+mailgun.messages().send(data, function (error, body) {
+  console.log(body);
+    if(!error){
+        res.redirect('/');
+    }else{
+        res.send("ERROR: MAIL NOT SEND! please try again");}
+});
+});
 
