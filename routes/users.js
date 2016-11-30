@@ -1,15 +1,17 @@
+
 /*
  * GET users listing.
  */
-
-// rowDataPacket
+exports.home = function(req, res){
+      res.sendfile('public/views/index.html')
+}
 exports.list = function(req, res){
   req.getConnection(function(err,connection){
         var query = connection.query('SELECT * FROM tableusers',function(err,rows)
         {  
             if(err)
                 console.log("Error Selecting : %s ",err );
-           else console.log(rows)
+
             return res.send(rows);
          });
     });
@@ -22,16 +24,15 @@ exports.user = function(req, res){
             if(err) {
                 console.log(err)}
            else{ 
-              res.send({data:rows}) // we're good
+              res.send({data:rows})
 
            }
          });
     }); 
 };
 
-
 exports.add = function(req, res){
-  res.render('add_users',{page_title:"Add users - Node.js"}); 
+  res.sendfile('public/views/index.html')
 };
 
 exports.edit = function(req, res){
@@ -39,14 +40,14 @@ exports.edit = function(req, res){
     req.getConnection(function(err,connection){
         var query = connection.query('SELECT * FROM tableusers WHERE id = ?',[id],function(err,rows)
         { 
-            if(err)
-                console.log("Error Selecting : %s ",err );
-           else{res.send({data:rows})}
+            if(err){
+              console.log("Error Selecting : %s ",err );
+            }
+            else{res.send({data:rows})}
          });
+
     }); 
 };
-
-
 
 /*Save the users*/
 exports.save = function(req,res){
@@ -61,7 +62,8 @@ exports.save = function(req,res){
             userPassword  : input.userPassword,
             userMobile    : input.userMobile,
             userRole      : input.userRole,
-            userClass     : input.userClass, 
+            userClass     : input.userClass,
+            userPhoto     : input.userPhoto
             //userRegisterDate: dateAndTime
         };
         //console.log(data.userRegisterDate);
@@ -70,6 +72,7 @@ exports.save = function(req,res){
           if (err)
               console.log("Error inserting : %s ",err );
           res.redirect('/');
+
         });
        // console.log(query.sql); get raw query
     });
@@ -78,27 +81,24 @@ exports.save = function(req,res){
 exports.save_edit = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));
     var id = req.params.id;
-   
     req.getConnection(function (err, connection) {
-
         var data = {
             userFirstName : input.userFirstName,
             userLastName  : input.userLastName,
             userAddress   : input.userAddress,
             userEmail     : input.userEmail,
-            //userPassword  : input.pass,
+            //userPassword  : input.userPassword,
             userMobile    : input.userMobile,
             userRole      : input.userRole,
             userClass     : input.userClass 
         };
-
+        
         connection.query("UPDATE tableusers set ? WHERE userId = ? ",[data,id], function(err, rows)
         {
           if (err)
               console.log("Error Updating : %s ",err );
-           
-           else{res.send({data:rows})}
-           
+          // res.redirect('/');
+          res.send({data:rows})
         });
     });
 };
@@ -110,7 +110,8 @@ exports.delete_user = function(req,res){
         {
              if(err)
                  console.log("Error deleting : %s ",err );
-             res.redirect('/');
+             // res.redirect('/');
+             else{console.log('success');res.send({data:rows})}
         });
      });
 };

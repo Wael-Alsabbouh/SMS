@@ -1,0 +1,40 @@
+<div>
+    <form method="post" data-ng-submit="UpdateInfo(user)">
+        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+          <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control " type="text" placeholder="First Name"   data-ng-model="user.userFirstName" >
+                        </div>
+                        <div class="form-group">
+                             <input class="form-control " type="text" placeholder="Last Name" data-ng-model="user.userLastName">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control " type="text" placeholder="Address" data-ng-model="user.userAddress">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control " type="text" placeholder="Email" data-ng-model="user.userEmail">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control " type="text" placeholder="Mobile Number" data-ng-model="user.userMobile">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control " type="text" placeholder="Role" data-ng-model="user.userRole">
+                        </div>
+                        <div class="form-group">
+                           <input class="form-control " type="text" placeholder="Group Number" data-ng-model="user.userClass">
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
