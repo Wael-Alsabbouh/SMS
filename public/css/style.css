@@ -135,3 +135,46 @@ animation: AnimationName 5s ease infinite;
     50%{background-position:100% 28%}
     100%{background-position:0% 73%}
 }
+
+.announcementClass .announceTitle{
+    
+    float: left;
+    padding: 0 5px 0 60px;
+    font-size: 25px;
+    display: inline-block;
+}
+
+.announcementClass .announceDesc{
+
+    color: #fff;
+    font-size: 18px;
+    display: inline-block;
+    text-align: left;
+        padding: 0 60px;
+}
+
+.announcementClass .announceDate{
+  font-size: 18px;
+}
+
+.att_cont h1{
+  font-size:30px;
+  text-shadow: 2px 3px 3px #000;
+}
+
+.displayed{
+  display: none;
+}
+
+
+/*scroll style*/
+::-webkit-scrollbar {
+  width:0.5em;
+}
+::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  background-color:rgb(201, 0, 0);
+}

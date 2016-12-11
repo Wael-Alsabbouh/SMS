@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 $("#mytable #checkall").click(function () {
         if ($("#mytable #checkall").is(':checked')) {
@@ -13,6 +15,23 @@ $("#mytable #checkall").click(function () {
     });
     
     $("[data-toggle=tooltip]").tooltip();
+
+         $("#hideShow").val("Show")
+            $("#hideShow").on("click", function(){
+              
+              if($(this).val()=="Show"){
+                  console.log('yes')
+                  $(this).val("Hide")
+              } 
+//              else {
+//                console.log('no')
+//                  $(this).val("Show")
+//              }
+            })
+
+
+
+
 });
 
 
@@ -47,7 +66,11 @@ $(document).ready(function(e){
             });
     });
 
-/*Abbouncement box*/
+/*Announcement box*/
 $(document).on('click','.close_box',function(){
     $(".att_cont").animate({ height: '0px'}, "200").fadeOut(300);
 });
+
+
+
+
